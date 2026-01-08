@@ -362,12 +362,25 @@ export function CandidateDashboard({ onLogout, userName = "Jane Doe" }: Candidat
         ) : (
           /* Job Cards */
           (() => {
-            const filteredJobs = jobs.filter((job) =>
-              searchQuery === "" ||
-              job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              job.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-            );
+            const filteredJobs = jobs.filter((job) => {
+              if (!searchQuery) return true
+
+              const tokens = searchQuery.toLowerCase().split(/\s+/)
+
+              const title = job.title?.toLowerCase() || ""
+              const company = job.company?.toLowerCase() || ""
+              const tags = Array.isArray(job.tags)
+                ? job.tags.join(" ").toLowerCase()
+                : ""
+
+              return tokens.every(token =>
+                title.includes(token) ||
+                company.includes(token) ||
+                tags.includes(token)
+              )
+})
+
+
 
             return (
               <>
