@@ -1,0 +1,551 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light & Uplifting Theme (Default) */
+  --background: oklch(0.98 0.01 240);
+  /* Soft White/Cool Grey Tint */
+  --foreground: oklch(0.2 0.02 260);
+  /* Deep Slate for text contrast */
+
+  /* Surface / Cards */
+  --card: oklch(1 0 0);
+  /* Pure White */
+  --card-foreground: oklch(0.2 0.02 260);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 260);
+
+  /* Joyful Primary: Calm Indigo/Blue */
+  --primary: oklch(0.55 0.18 260);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Secondary: Fresh Mint/Teal */
+  --secondary: oklch(0.88 0.1 170);
+  --secondary-foreground: oklch(0.2 0.02 260);
+
+  /* Muted / Soft Elements */
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.5 0.02 260);
+
+  /* Accents */
+  --accent: oklch(0.92 0.04 270);
+  /* Soft Lavender */
+  --accent-foreground: oklch(0.3 0.1 270);
+
+  --destructive: oklch(0.65 0.2 20);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.9 0.01 240);
+  /* Soft Border */
+  --input: oklch(0.92 0.01 240);
+  --ring: oklch(0.6 0.15 260);
+
+  --radius: 1rem;
+  /* More rounded/friendly */
+
+  /* Sidebar */
+  --sidebar: oklch(0.99 0 0);
+  --sidebar-foreground: oklch(0.3 0.02 260);
+  --sidebar-primary: oklch(0.6 0.15 260);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.02 260);
+  --sidebar-accent-foreground: oklch(0.3 0.02 260);
+  --sidebar-border: oklch(0.92 0.01 240);
+  --sidebar-ring: oklch(0.6 0.15 260);
+}
+
+.dark {
+  /* Retaining a dark mode option but softer/richer, less "Matrix" */
+  --background: oklch(0.15 0.03 260);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.2 0.03 260);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.2 0.03 260);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.18 260);
+  --primary-foreground: oklch(0.15 0.03 260);
+  --secondary: oklch(0.3 0.05 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0.02 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --accent: oklch(0.3 0.05 260);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.4 0.15 20);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.3 0.02 260);
+  --input: oklch(0.3 0.02 260);
+  --ring: oklch(0.6 0.18 260);
+  --sidebar: oklch(0.12 0.03 260);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.65 0.18 260);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.25 0.03 260);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0.02 260);
+  --sidebar-ring: oklch(0.65 0.18 260);
+}
+
+@theme inline {
+  --font-heading: var(--font-heading), "ui-sans-serif", system-ui, sans-serif;
+  --font-sans: var(--font-sans), "ui-sans-serif", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+
+  /* New "Soft UI" / Uplifting Utilities */
+  .soft-card {
+    @apply bg-white shadow-md border-transparent rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .glass-button {
+    /* Keeping for specific uses, but updated for light mode compatibility */
+    @apply bg-white/20 hover:bg-white/40 active:bg-white/10 backdrop-blur-md border border-white/20 transition-all duration-300;
+  }
+
+  .text-glow {
+    /* Subtler glow for light mode */
+    text-shadow: 0 0 10px rgba(var(--primary), 0.2);
+  }
+
+  .gradient-text-uplift {
+    @apply bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 bg-clip-text text-transparent;
+  }
+
+  .blob-bg {
+    /* Soft pastel blobs */
+    background: radial-gradient(circle at 50% 50%, rgba(var(--primary), 0.1), transparent 50%);
+  }
+}
+
+/* High Contrast Mode - WCAG AA Compliant */
+.high-contrast {
+  /* Background colors - Pure black for maximum contrast */
+  --background: #000000;
+  --card: #000000;
+  --popover: #000000;
+  --muted: #000000;
+  --accent: #000000;
+  --sidebar: #000000;
+
+  /* Text colors - Pure white for maximum contrast */
+  --foreground: #ffffff;
+  --card-foreground: #ffffff;
+  --popover-foreground: #ffffff;
+  --primary-foreground: #000000;
+  --secondary-foreground: #ffffff;
+  --muted-foreground: #ffffff;
+  --accent-foreground: #ffffff;
+  --sidebar-foreground: #ffffff;
+
+  /* Border colors - High contrast white */
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffffff;
+  --sidebar-border: #ffffff;
+
+  /* Force black background and white text globally */
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast *,
+.high-contrast *::before,
+.high-contrast *::after {
+  /* Ensure all text and pseudo-elements are white on black */
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+/* Background color overrides - WCAG AA compliant combinations */
+.high-contrast .bg-white,
+.high-contrast .bg-gray-50,
+.high-contrast .bg-gray-100 {
+  background-color: #000000 !important;
+}
+
+.high-contrast .bg-indigo-50 {
+  background-color: #000033 !important; /* Darker blue for better contrast */
+}
+
+.high-contrast .bg-indigo-100 {
+  background-color: #000066 !important;
+}
+
+.high-contrast .bg-red-50 {
+  background-color: #330000 !important;
+}
+
+.high-contrast .bg-red-100 {
+  background-color: #660000 !important;
+}
+
+.high-contrast .bg-green-50 {
+  background-color: #003300 !important;
+}
+
+.high-contrast .bg-green-100 {
+  background-color: #006600 !important;
+}
+
+.high-contrast .bg-blue-50 {
+  background-color: #000033 !important;
+}
+
+.high-contrast .bg-blue-100 {
+  background-color: #000066 !important;
+}
+
+.high-contrast .bg-purple-50 {
+  background-color: #220022 !important;
+}
+
+.high-contrast .bg-purple-100 {
+  background-color: #330033 !important;
+}
+
+.high-contrast .bg-yellow-50 {
+  background-color: #333300 !important;
+}
+
+.high-contrast .bg-yellow-100 {
+  background-color: #666600 !important;
+}
+
+.high-contrast .bg-teal-50 {
+  background-color: #003333 !important;
+}
+
+.high-contrast .bg-teal-100 {
+  background-color: #006666 !important;
+}
+
+/* Text color overrides - ensuring WCAG AA compliance */
+.high-contrast .text-gray-600 {
+  color: #cccccc !important; /* Light gray for secondary text */
+}
+
+.high-contrast .text-gray-900,
+.high-contrast .text-gray-800,
+.high-contrast .text-gray-700 {
+  color: #ffffff !important; /* Pure white for primary text */
+}
+
+.high-contrast .text-indigo-600,
+.high-contrast .text-indigo-700 {
+  color: #00ffff !important; /* Bright cyan - 7.0:1 contrast ratio */
+}
+
+.high-contrast .text-indigo-500 {
+  color: #66ccff !important; /* Lighter cyan - still meets 4.5:1 */
+}
+
+.high-contrast .border-gray-100 {
+  border-color: #ffffff !important;
+}
+
+.high-contrast .border-gray-200 {
+  border-color: #cccccc !important;
+}
+
+.high-contrast .border-indigo-100 {
+  border-color: #00ffff !important;
+}
+
+.high-contrast .border-indigo-200 {
+  border-color: #00ffff !important;
+}
+
+.high-contrast .border-red-100 {
+  border-color: #ff6666 !important;
+}
+
+.high-contrast .border-red-200 {
+  border-color: #ff6666 !important;
+}
+
+.high-contrast .border-green-100 {
+  border-color: #66ff66 !important;
+}
+
+.high-contrast .border-green-200 {
+  border-color: #66ff66 !important;
+}
+
+.high-contrast .border-blue-100 {
+  border-color: #6666ff !important;
+}
+
+.high-contrast .border-blue-200 {
+  border-color: #6666ff !important;
+}
+
+.high-contrast .border-purple-100 {
+  border-color: #ff66ff !important;
+}
+
+.high-contrast .border-purple-200 {
+  border-color: #ff66ff !important;
+}
+
+.high-contrast .border-yellow-100 {
+  border-color: #ffff66 !important;
+}
+
+.high-contrast .border-yellow-200 {
+  border-color: #ffff66 !important;
+}
+
+/* WCAG AA Compliant Focus Outlines - Comprehensive coverage */
+.high-contrast *:focus-visible,
+.high-contrast button:focus-visible,
+.high-contrast a:focus-visible,
+.high-contrast input:focus-visible,
+.high-contrast select:focus-visible,
+.high-contrast textarea:focus-visible,
+.high-contrast [role="button"]:focus-visible,
+.high-contrast [role="link"]:focus-visible,
+.high-contrast [role="tab"]:focus-visible,
+.high-contrast [role="menuitem"]:focus-visible,
+.high-contrast [tabindex]:focus-visible {
+  outline: 3px solid #ffff00 !important; /* Bright yellow - 21:1 contrast */
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 1px #000000 !important; /* Black shadow for definition */
+}
+
+/* Additional focus styles for specific components */
+.high-contrast .focus\:ring-4:focus,
+.high-contrast .focus\:ring-indigo-100:focus {
+  box-shadow: 0 0 0 3px #ffff00 !important;
+}
+
+/* Status badges with text labels for clarity */
+.high-contrast .bg-yellow-100 {
+  background-color: #666600 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+.high-contrast .bg-blue-100 {
+  background-color: #000066 !important;
+  border: 2px solid #6666ff !important;
+}
+
+.high-contrast .bg-purple-100 {
+  background-color: #330033 !important;
+  border: 2px solid #ff66ff !important;
+}
+
+.high-contrast .bg-green-100 {
+  background-color: #006600 !important;
+  border: 2px solid #66ff66 !important;
+}
+
+.high-contrast .bg-red-100 {
+  background-color: #660000 !important;
+  border: 2px solid #ff6666 !important;
+}
+
+/* Ensure links are distinguishable */
+.high-contrast a {
+  color: #00ffff !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast a:hover {
+  color: #ffff00 !important;
+}
+
+/* Progress bars */
+.high-contrast .bg-gray-200 {
+  background-color: #666666 !important;
+}
+
+.high-contrast .bg-indigo-600 {
+  background-color: #00ffff !important;
+}
+
+/* Icons should be visible */
+.high-contrast svg {
+  color: #ffffff !important;
+  fill: currentColor !important;
+}
+
+/* Specific overrides for components */
+.high-contrast .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Status badges - WCAG AA compliant with distinct colors and borders */
+.high-contrast .bg-yellow-100 {
+  background-color: #333300 !important;
+  border: 3px solid #ffff00 !important; /* Yellow border for yellow badges */
+  color: #ffff00 !important;
+}
+
+.high-contrast .bg-blue-100 {
+  background-color: #000033 !important;
+  border: 3px solid #6666ff !important; /* Blue border for blue badges */
+  color: #6666ff !important;
+}
+
+.high-contrast .bg-purple-100 {
+  background-color: #220022 !important;
+  border: 3px solid #ff66ff !important; /* Magenta border for purple badges */
+  color: #ff66ff !important;
+}
+
+.high-contrast .bg-green-100 {
+  background-color: #003300 !important;
+  border: 3px solid #66ff66 !important; /* Green border for green badges */
+  color: #66ff66 !important;
+}
+
+.high-contrast .bg-red-100 {
+  background-color: #330000 !important;
+  border: 3px solid #ff6666 !important; /* Red border for red badges */
+  color: #ff6666 !important;
+}
+
+/* Form elements - enhanced contrast */
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast input::placeholder,
+.high-contrast textarea::placeholder {
+  color: #cccccc !important;
+}
+
+.high-contrast input:focus,
+.high-contrast select:focus,
+.high-contrast textarea:focus {
+  border-color: #ffff00 !important;
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+}
+
+/* Buttons - enhanced contrast and focus */
+.high-contrast button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast button:hover {
+  background-color: #333333 !important;
+  border-color: #cccccc !important;
+}
+
+.high-contrast button:active,
+.high-contrast button:focus {
+  background-color: #666666 !important;
+  border-color: #ffff00 !important;
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+}
+
+/* Specific button variants */
+.high-contrast .bg-indigo-50 button,
+.high-contrast .bg-indigo-100 button {
+  background-color: #000066 !important;
+  border-color: #00ffff !important;
+  color: #00ffff !important;
+}
+
+.high-contrast .bg-red-50 button,
+.high-contrast .bg-red-100 button {
+  background-color: #660000 !important;
+  border-color: #ff6666 !important;
+  color: #ff6666 !important;
+}
+
+/* Hover states for interactive elements */
+.high-contrast .hover\:bg-gray-50:hover {
+  background-color: #333333 !important;
+}
+
+.high-contrast .hover\:bg-indigo-100:hover {
+  background-color: #000066 !important;
+}
+
+.high-contrast .hover\:bg-red-50:hover {
+  background-color: #330000 !important;
+}
+
+/* Ensure gradients are replaced with solid colors */
+.high-contrast .bg-gradient-to-r {
+  background: #000000 !important;
+}
+
+/* Text gradients */
+.high-contrast .bg-clip-text.text-transparent {
+  background: none !important;
+  color: #ffffff !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Links - enhanced for WCAG AA */
+.high-contrast a:visited {
+  color: #cc99ff !important; /* Light purple for visited links - still meets 4.5:1 */
+}

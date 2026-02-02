@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 🔓 Public job listings (anyone can view)
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // 👤 User profiles (generic/legacy)
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // 🎓 Candidate profiles (Active in code)
+    match /candidates/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // 📄 Applications (only logged-in users)
+    match /applications/{appId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // 🏢 Recruiter profiles
+    match /recruiters/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
